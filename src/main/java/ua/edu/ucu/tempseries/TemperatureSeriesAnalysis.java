@@ -79,7 +79,7 @@ public class TemperatureSeriesAnalysis {
         }
         double closest = MIN_TEMP;
         for (double temp: tempList) {
-            if (Math.abs(closest - tempValue) < Math.abs(temp - tempValue)) {
+            if (Math.abs(closest - tempValue) > Math.abs(temp - tempValue)) {
                 closest = temp;
             }
             if ( Double.compare(Math.abs(closest - tempValue),
@@ -101,7 +101,7 @@ public class TemperatureSeriesAnalysis {
         int index = 0;
         for (double temp: tempList) {
             if (temp < tempValue) {
-                if (index <= minTemps.length) {
+                if (index >= minTemps.length) {
                     minTemps = extendSequence(minTemps);
                 }
                 minTemps[index] = temp;
@@ -120,7 +120,7 @@ public class TemperatureSeriesAnalysis {
         int index = 0;
         for (double temp: tempList) {
             if (temp > tempValue) {
-                if (index <= maxTemps.length) {
+                if (index >= maxTemps.length) {
                     maxTemps = extendSequence(maxTemps);
                 }
                 maxTemps[index] = temp;

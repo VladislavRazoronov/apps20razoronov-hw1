@@ -183,7 +183,9 @@ public class TemperatureSeriesAnalysisTest {
 
         double[] actualResult = seriesAnalysis.findTempsLessThan(8.0);
 
-        assertArrayEquals(expResult, actualResult, 0.00001);
+        for(int i=0; i< expResult.length; i++){
+            assertEquals(expResult[i],actualResult[i], 0.00001);
+        }
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -203,7 +205,9 @@ public class TemperatureSeriesAnalysisTest {
 
         double[] actualResult = seriesAnalysis.findTempsGreaterThan(8.0);
 
-        assertArrayEquals(expResult, actualResult, 0.00001);
+        for(int i=0; i< expResult.length; i++){
+            assertEquals(expResult[i],actualResult[i], 0.00001);
+        }
     }
 
     @Test(expected = IllegalArgumentException.class)
