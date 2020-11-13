@@ -3,13 +3,13 @@ package ua.edu.ucu.tempseries;
 import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
-    private final double MIN_TEMP = -273.0;
-    private final int BASE_SIZE = 10;
+    private static final double MINTEMP = -273.0;
+    private static final int BASESIZE = 10;
     private double[] tempList;
     private int lastItem;
 
     public TemperatureSeriesAnalysis() {
-        tempList = new double[BASE_SIZE];
+        tempList = new double[BASESIZE];
         lastItem = 0;
     }
 
@@ -26,7 +26,7 @@ public class TemperatureSeriesAnalysis {
         for (double temp: tempList) {
             sum += temp;
         }
-        return sum/(double)(lastItem);
+        return sum/(double) (lastItem);
     }
 
     public double deviation() throws IllegalArgumentException {
@@ -59,7 +59,7 @@ public class TemperatureSeriesAnalysis {
         if (lastItem == 0) {
             throw new IllegalArgumentException();
         }
-        double maximum = MIN_TEMP;
+        double maximum = MINTEMP;
         for (double temp: tempList) {
             if (maximum < temp) {
                 maximum = temp;
@@ -77,12 +77,12 @@ public class TemperatureSeriesAnalysis {
         if (lastItem == 0) {
             throw new IllegalArgumentException();
         }
-        double closest = MIN_TEMP;
+        double closest = MINTEMP;
         for (double temp: tempList) {
             if (Math.abs(closest - tempValue) > Math.abs(temp - tempValue)) {
                 closest = temp;
             }
-            if ( Double.compare(Math.abs(closest - tempValue),
+            if ( Double.compare( Math.abs( closest - tempValue),
                     Math.abs(temp - tempValue)) == 0) {
                 if (temp > 0 && closest < 0) {
                     closest = temp;
@@ -97,7 +97,7 @@ public class TemperatureSeriesAnalysis {
         if (lastItem == 0) {
             throw new IllegalArgumentException();
         }
-        double[] minTemps = new double[BASE_SIZE];
+        double[] minTemps = new double[BASESIZE];
         int index = 0;
         for (double temp: tempList) {
             if (temp < tempValue) {
@@ -116,7 +116,7 @@ public class TemperatureSeriesAnalysis {
         if (lastItem == 0) {
             throw new IllegalArgumentException();
         }
-        double[] maxTemps = new double[BASE_SIZE];
+        double[] maxTemps = new double[BASESIZE];
         int index = 0;
         for (double temp: tempList) {
             if (temp > tempValue) {
@@ -150,7 +150,7 @@ public class TemperatureSeriesAnalysis {
 
     public int addTemps(double...temps) throws InputMismatchException {
         for (double temp: temps) {
-            if (temp < MIN_TEMP) {
+            if (temp < MINTEMP) {
                 throw new InputMismatchException();
             }
         }
