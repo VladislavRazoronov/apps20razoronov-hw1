@@ -2,7 +2,6 @@ package ua.edu.ucu.tempseries;
 
 import static org.junit.Assert.*;
 
-import jdk.internal.util.xml.impl.Input;
 import org.junit.Test;
 import org.junit.Ignore;
 
