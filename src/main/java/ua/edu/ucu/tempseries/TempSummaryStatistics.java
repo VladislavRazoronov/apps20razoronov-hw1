@@ -10,7 +10,7 @@ public class TempSummaryStatistics {
         minTemp = min;
     }
     public String toString() {
-        return "Average: " + avgTemp + "; Deviation: " + devTemp +
-                "; Max: " + maxTemp + "; Min: " + minTemp;
+        return "Average: " + avgTemp + "; Deviation: " + devTemp
+                + "; Max: " + maxTemp + "; Min: " + minTemp;
     }
 }

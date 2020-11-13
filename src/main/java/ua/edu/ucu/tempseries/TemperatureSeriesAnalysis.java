@@ -3,8 +3,8 @@ package ua.edu.ucu.tempseries;
 import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
-    private final static double MIN_TEMP = -273.0;
-    private final static int BASE_SIZE = 10;
+    private final double MIN_TEMP = -273.0;
+    private final int BASE_SIZE = 10;
     private double[] tempList;
     private int lastItem;
 
@@ -14,7 +14,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        tempList = temperatureSeries;
+        tempList = temperatureSeries.clone();
         lastItem = temperatureSeries.length;
     }
 
@@ -26,7 +26,7 @@ public class TemperatureSeriesAnalysis {
         for (double temp: tempList) {
             sum += temp;
         }
-        return sum / (double)(lastItem);
+        return sum/(double)(lastItem);
     }
 
     public double deviation() throws IllegalArgumentException {
@@ -36,7 +36,7 @@ public class TemperatureSeriesAnalysis {
         double mean = average();
         double sum = 0;
         for (double temp: tempList) {
-            sum += Math.pow(temp - mean, 2);
+            sum += (temp - mean)*(temp - mean);
         }
         sum /= lastItem;
         return sum;
@@ -72,7 +72,8 @@ public class TemperatureSeriesAnalysis {
         return findTempClosestToValue(0);
     }
 
-    public double findTempClosestToValue(double tempValue) throws IllegalArgumentException {
+    public double findTempClosestToValue(double tempValue)
+            throws IllegalArgumentException {
         if (lastItem == 0) {
             throw new IllegalArgumentException();
         }
@@ -81,7 +82,8 @@ public class TemperatureSeriesAnalysis {
             if (Math.abs(closest - tempValue) < Math.abs(temp - tempValue)) {
                 closest = temp;
             }
-            if (Math.abs(closest - tempValue) == Math.abs(temp - tempValue)) {
+            if ( Double.compare(Math.abs(closest - tempValue),
+                    Math.abs(temp - tempValue)) == 0) {
                 if (temp > 0 && closest < 0) {
                     closest = temp;
                 }
@@ -90,7 +92,8 @@ public class TemperatureSeriesAnalysis {
         return closest;
     }
 
-    public double[] findTempsLessThan(double tempValue) throws IllegalArgumentException {
+    public double[] findTempsLessThan(double tempValue)
+            throws IllegalArgumentException {
         if (lastItem == 0) {
             throw new IllegalArgumentException();
         }
@@ -108,7 +111,8 @@ public class TemperatureSeriesAnalysis {
         return minTemps;
     }
 
-    public double[] findTempsGreaterThan(double tempValue) throws IllegalArgumentException {
+    public double[] findTempsGreaterThan(double tempValue)
+            throws IllegalArgumentException {
         if (lastItem == 0) {
             throw new IllegalArgumentException();
         }
@@ -126,7 +130,8 @@ public class TemperatureSeriesAnalysis {
         return maxTemps;
     }
 
-    public TempSummaryStatistics summaryStatistics() throws IllegalArgumentException {
+    public TempSummaryStatistics summaryStatistics()
+            throws IllegalArgumentException {
         if (lastItem == 0) {
             throw new IllegalArgumentException();
         }
