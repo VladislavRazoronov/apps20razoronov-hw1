@@ -25,7 +25,7 @@ public class TemperatureSeriesAnalysis {
         for(double temp: tempList){
             sum += temp;
         }
-        return sum/(double)(lastItem+1);
+        return sum/(double)(lastItem);
     }
 
     public double deviation() throws IllegalArgumentException{
