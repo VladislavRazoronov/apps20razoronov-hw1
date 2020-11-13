@@ -82,7 +82,7 @@ public class TemperatureSeriesAnalysis {
             if (Math.abs(closest - tempValue) > Math.abs(temp - tempValue)) {
                 closest = temp;
             }
-            if ( Double.compare( Math.abs( closest - tempValue),
+            if (Double.compare(Math.abs(closest - tempValue),
                     Math.abs(temp - tempValue)) == 0) {
                 if (temp > 0 && closest < 0) {
                     closest = temp;
