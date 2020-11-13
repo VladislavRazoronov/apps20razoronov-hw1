@@ -45,8 +45,7 @@ public class TemperatureSeriesAnalysis {
         if(lastItem == 0){
             throw new IllegalArgumentException();
         }
-        double MAX_TEMP = Double.POSITIVE_INFINITY;
-        double minimum = MAX_TEMP;
+        double minimum = Double.POSITIVE_INFINITY;
         for(double temp: tempList){
             if(temp < minimum){
                 minimum = temp;
